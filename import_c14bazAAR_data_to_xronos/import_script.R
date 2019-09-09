@@ -51,6 +51,24 @@ con <- DBI::dbConnect(
   password = password
 )
 
+#### user ####
+DBI::dbWriteTable(
+  con, "users", 
+  tibble::tibble(
+    id = 9999,
+    email = "c14bazAAR_import_user",
+    encrypted_password = "Kaesebrot",
+    reset_password_token = NA,
+    reset_password_sent_at = NA,
+    remember_created_at = NA,
+    admin = FALSE
+  ) %>% 
+    add_time_columns() %>% 
+    dplyr::filter(!is.na(id)) %>%
+    dplyr::filter(!(id %in% source_databases_cur$id)),
+  append = T
+)
+
 #### write to db loop ####
 pbapply::pblapply(
   1:nrow(imp), function(i, imp, con) {
@@ -240,7 +258,8 @@ pbapply::pblapply(
         cal_std = c14_measurements.cal_std,
         delta_c13 = c14_measurements.delta_c13,
         delta_c13_std = c14_measurements.delta_c13_std,
-        method = c14_measurements.method
+        method = c14_measurements.method,
+        source_database_id = source_databases.id
       ) %>% 
         add_time_columns() %>% 
         dplyr::filter(!is.na(id)) %>%
@@ -311,7 +330,8 @@ pbapply::pblapply(
         labnr = measurements.labnr,
         sample_id = samples.id,
         lab_id = NA,
-        c14_measurement_id = c14_measurements.id
+        c14_measurement_id = c14_measurements.id,
+        user_id = 9999
       ) %>% 
         add_time_columns() %>% 
         dplyr::filter(!is.na(id)) %>%
@@ -367,7 +387,8 @@ pbapply::pblapply(
         name = periods.name,
         approx_start_time = NA,
         approx_end_time = NA,
-        parent_id = NA 
+        parent_id = NA,
+        user_id = 9999
       ) %>% 
         add_time_columns() %>% 
         dplyr::filter(!is.na(id)) %>%
@@ -435,7 +456,8 @@ pbapply::pblapply(
         approx_start_time = NA,
         approx_end_time = NA,
         site_id = sites.id,
-        site_type_id = site_types.id
+        site_type_id = site_types.id,
+        user_id = 9999
       ) %>% 
         add_time_columns() %>% 
         dplyr::filter(!is.na(id)) %>%
@@ -524,7 +546,8 @@ pbapply::pblapply(
         name = typochronological_units.name,
         approx_start_time = NA,
         approx_end_time = NA,
-        parent_id = NA 
+        parent_id = NA,
+        user_id = 9999
       ) %>% 
         add_time_columns() %>% 
         dplyr::filter(!is.na(id)) %>%
