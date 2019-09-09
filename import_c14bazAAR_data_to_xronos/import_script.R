@@ -6,10 +6,33 @@ source("import_c14bazAAR_data_to_xronos/helper_functions.R")
 # run migrations again: rails db:migrate
 
 #### prepare data #### 
-imp <- c14bazAAR::get_RADON()
+imp <- c14bazAAR::get_all_dates() %>%
+  dplyr::filter(
+    sourcedb %in% c("CALPAL", "CONTEXT", "EUBAR", "EUROEVOL", "Palmisano", "RADON", "RADON-B") 
+  )
+imp %<>% c14bazAAR::remove_duplicates(preferences = c(
+  "Palmisano", "RADON", "RADON-B", "EUBAR", "CONTEXT", "EUROEVOL", "CALPAL" 
+  ))
 imp %<>% c14bazAAR::calibrate(choices = "calprobdistr")
 imp %<>% add_simple_cal()
 imp %<>% c14bazAAR::finalize_country_name()
+
+db_urls <- tibble::tribble(
+  ~sourcedb, ~url,
+  "CALPAL", "https://uni-koeln.academia.edu/BernhardWeninger/CalPal",
+  "CONTEXT",	"http://context-database.uni-koeln.de/",
+  "EUBAR",	"https://telearchaeology.org/eubar-c14-database/",
+  "EUROEVOL", "http://discovery.ucl.ac.uk/1469811/",
+  "Palmisano", "http://discovery.ucl.ac.uk/1575442/",
+  "RADON", "https://radon.ufg.uni-kiel.de/",
+  "RADON-B", "https://radon-b.ufg.uni-kiel.de/"
+)
+
+imp %<>% 
+  dplyr::left_join(
+    db_urls, by = "sourcedb"
+  )
+  
 
 #### read env variables ####
 env_vars <- readLines("~/agora/xronos.rails/env_variables.env")
@@ -40,6 +63,7 @@ pbapply::pblapply(
     # source_databases
     source_databases_cur <- get_table("source_databases", con)
     source_databases.name <- cur$sourcedb
+    source_databases.url <- cur$url
     source_databases.id <- get_id(source_databases.name, source_databases_cur$name, source_databases_cur$id)
     
     # measurements
@@ -171,7 +195,7 @@ pbapply::pblapply(
       tibble::tibble(
         id = source_databases.id,
         name = source_databases.name,
-        url = NA,
+        url = source_databases.url,
         citation = NA,
         licence = NA
       ) %>% 
