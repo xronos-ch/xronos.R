@@ -1,8 +1,11 @@
 library(magrittr)
-source("~/agora/xronos.rails/R_add_data_to_db/helper_functions.R")
+source("import_c14bazAAR_data_to_xronos/helper_functions.R")
+
+#### rails notes ####
+# delete database content and structure: rails db:purge
+# run migrations again: rails db:migrate
 
 #### prepare data #### 
-#imp <- c14bazAAR::get_aDRAC()
 imp <- c14bazAAR::get_RADON()
 imp %<>% c14bazAAR::calibrate(choices = "calprobdistr")
 imp %<>% add_simple_cal()
