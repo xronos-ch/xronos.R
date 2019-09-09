@@ -146,11 +146,27 @@ pbapply::pblapply(
           strsplit(., ";") %>%
           unlist %>%
           trimws()
-      } else if (cur$sourcedb == "RADON") {
+      } else if (cur$sourcedb %in% c("RADON", "RADON-B")) {
         cur$shortref %>% 
           strsplit(., ";") %>%
           unlist %>%
           gsub(",.*", "", .) %>%
+          trimws()
+      } else if (cur$sourcedb == "CALPAL") {
+        cur$shortref
+      } else if (cur$sourcedb == "CONTEXT") {
+        cur$shortref %>% 
+          strsplit(., ",") %>%
+          unlist() %>%
+          trimws()
+      } else if (cur$sourcedb == "EUBAR") {
+        cur$shortref
+      } else if (cur$sourcedb == "EUROEVOL") {
+        NA
+      } else if (cur$sourcedb == "Palmisano") {
+        cur$shortref %>% 
+          strsplit(., ";") %>%
+          unlist() %>%
           trimws()
       } else {
         NA
