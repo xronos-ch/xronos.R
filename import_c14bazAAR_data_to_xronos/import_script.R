@@ -37,6 +37,11 @@ pbapply::pblapply(
   
     #### preparing variables ####
   
+    # source_databases
+    source_databases_cur <- get_table("source_databases", con)
+    source_databases.name <- cur$sourcedb
+    source_databases.id <- get_id(source_databases.name, source_databases_cur$name, source_databases_cur$id)
+    
     # measurements
     measurements_cur <- get_table("measurements", con)
     measurements.labnr <- if ("labnr" %in% colnames(cur)) { cur$labnr } else { NA }
@@ -159,6 +164,26 @@ pbapply::pblapply(
     typochronological_units.id <- get_id(typochronological_units.name, typochronological_units_cur$name, typochronological_units_cur$id)
     
     #### writing tables ####
+    
+    # source_databases
+    DBI::dbWriteTable(
+      con, "source_databases", 
+      tibble::tibble(
+        id = source_databases.id,
+        name = source_databases.name,
+        url = NA,
+        citation = NA,
+        licence = NA
+      ) %>% 
+        add_time_columns() %>% 
+        dplyr::filter(!is.na(id)) %>%
+        dplyr::filter(!(id %in% source_databases_cur$id)),
+      append = T
+    )
+    DBI::dbExecute(
+      con,
+      "SELECT setval('source_databases_id_seq', (SELECT MAX(id) FROM source_databases));"
+    )
     
     # arch_objects
     DBI::dbWriteTable(
