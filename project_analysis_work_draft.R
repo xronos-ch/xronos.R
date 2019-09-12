@@ -1,5 +1,7 @@
 library(magrittr)
 
+#### basic data preparation ####
+
 # get first radiocarbon date selection
 raw_data <- c14bazAAR::get_all_dates() %>%
   dplyr::filter(
@@ -86,3 +88,59 @@ raw_data_in_time_of_interest <- raw_data_calibrated %>%
       in_time_of_interest == TRUE
     ) %>%
     dplyr::select(-in_time_of_interest)
+
+# fixing encoding
+raw_data_utf8 <- raw_data_in_time_of_interest %>%
+  dplyr::mutate_if(is.character, function(x) {
+    iconv(x, "UTF-8", "UTF-8", sub='')
+  })
+
+# store result dataset
+c14dates <- raw_data_utf8
+save(c14dates, file = "data/c14dates.RData")
+
+
+
+#### get dates in 50km radius of pollen samples ####
+
+# load c14 dates
+load("data/c14dates.RData")
+
+c14dates_sf <- c14dates %>% c14bazAAR::as.sf()
+# c14dates_sf %>% mapview::mapview(zcol = "data.c14age")
+
+# transform points to projected coordinate system
+c14dates_sf_7794 <- c14dates_sf %>% st_transform(crs = 7794)
+
+# generate random points for pollen samples
+# can be replaced with the real data when available
+coords <- dplyr::sample_n(as.data.frame(sf::st_coordinates(c14dates_sf_7794)), 5) %>%
+  dplyr::mutate(pollen_region = LETTERS[1:5])
+pollen_cores <- sf::st_as_sf(
+  coords,
+  coords = c("X", "Y"), 
+  crs = 7794
+)
+# pollen_cores %>% mapview::mapview()
+
+# generate buffers around pollen cores
+pollen_areas <- sf::st_buffer(pollen_cores, 30000)
+# pollen_areas %>% mapview::mapview()
+
+# find dates in regions with an intersection operation
+inter_dates_pollen_areas <- sf::st_intersection(c14dates_sf_7794, pollen_areas)
+
+# transform sf object back to c14_date_list 
+colnames(inter_dates_pollen_areas) <- gsub("data\\.", "", colnames(inter_dates_pollen_areas))
+dates_per_pollen_area <- inter_dates_pollen_areas %>% 
+  sf::st_set_geometry(NULL) %>%
+  c14bazAAR::as.c14_date_list()
+
+# preparing result dataset
+save(dates_per_pollen_area, file = "data/dates_per_pollen_area.RData")
+
+
+
+
+
+
