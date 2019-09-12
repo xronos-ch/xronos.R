@@ -136,11 +136,59 @@ dates_per_pollen_area <- inter_dates_pollen_areas %>%
   sf::st_set_geometry(NULL) %>%
   c14bazAAR::as.c14_date_list()
 
-# preparing result dataset
+# store result dataset
 save(dates_per_pollen_area, file = "data/dates_per_pollen_area.RData")
 
 
 
+#### determine dates per year and region ####
+
+# load dates per pollen area
+load("data/dates_per_pollen_area.RData")
+
+# create long helper table 
+dates_per_year_and_pollen_area <- dates_per_pollen_area %>%
+  tidyr::unnest(calage_density_distribution) %>%
+  dplyr::filter(
+    two_sigma == TRUE
+  ) %>%
+  dplyr::filter(
+    age >= -10000 & age <= -2000
+  )
+
+# store result dataset
+save(dates_per_year_and_pollen_area, file = "data/dates_per_year_and_pollen_area.RData")
 
 
+
+#### time series of the number of dates per pollen area ####
+load("data/dates_per_year_and_pollen_area.RData")
+
+amount_timeseries <- dates_per_year_and_pollen_area %>%
+  dplyr::group_by(pollen_region, age) %>%
+  dplyr::rename(
+    timestep = age
+  ) %>%
+  dplyr::tally()
+
+amount_timeseries_complete <- amount_timeseries %>%
+  dplyr::right_join(
+    expand.grid(
+      pollen_region = unique(amount_timeseries$pollen_region),
+      timestep = -10000:-200,
+      stringsAsFactors = FALSE
+    ),
+    by = c("pollen_region", "timestep")
+  ) %>%
+  dplyr::mutate(
+    n = replace(n, is.na(n), 0)
+  )
+
+# library(ggplot2)
+# amount_timeseries_complete %>%
+#   ggplot() +
+#   geom_line(aes(x = timestep, y = n)) +
+#   facet_wrap(~pollen_region)
+
+save(amount_timeseries_complete, file = "data/amount_timeseries_complete.RData")
 
