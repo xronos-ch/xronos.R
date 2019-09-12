@@ -110,7 +110,7 @@ c14dates_sf <- c14dates %>% c14bazAAR::as.sf()
 # c14dates_sf %>% mapview::mapview(zcol = "data.c14age")
 
 # transform points to projected coordinate system
-c14dates_sf_7794 <- c14dates_sf %>% st_transform(crs = 7794)
+c14dates_sf_7794 <- c14dates_sf %>% sf::st_transform(crs = 7794)
 
 # generate random points for pollen samples
 # can be replaced with the real data when available
