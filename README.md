@@ -4,6 +4,7 @@
 <!-- badges: start -->
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R-CMD-check](https://github.com/xronos-ch/xronos.R/workflows/R-CMD-check/badge.svg)](https://github.com/xronos-ch/xronos.R/actions)
 <!-- badges: end -->
 
 An R interface to [XRONOS](https://xronos.ch), a worldwide database of chronological information from archaeological contexts, including radiocarbon and dendrochronological data.
