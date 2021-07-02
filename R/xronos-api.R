@@ -26,7 +26,17 @@ xronos_api_url <- function(version = "v1") {
 #' xronos_query("query_labnr=AAR-1847")
 xronos_query <- function(query, api_url = xronos_api_url()) {
   url <- paste0(xronos_api_url(), "?", query)
-  response <- httr::GET(url)
+  response <- httr::stop_for_status(httr::GET(url),
+                                    task = "query XRONOS API")
 
-  jsonlite::parse_json(response)
+  if (httr::http_type(response) == "application/json") {
+    result <- jsonlite::fromJSON(httr::content(response, as = "text"))
+  }
+  else {
+    rlang::abort(paste0("Unexpected content type of response from XRONOS API:",
+                        httr::http_type(response)),
+                 class = "xronos_api_error")
+  }
+
+  result
 }
