@@ -21,6 +21,7 @@
 xronos_request <- function(query = NA, api_url = xronos_api_url()) {
   if (!is.na(query)) url <- paste0(xronos_api_url(), "?", query)
   else url <- xronos_api_url()
+  url <- utils::URLencode(url)
 
   response <- httr::stop_for_status(httr::GET(url),
                                     task = "query XRONOS API")

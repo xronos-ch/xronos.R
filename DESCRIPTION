@@ -27,4 +27,5 @@ Imports:
     jsonlite,
     httr,
     rlang,
-    purrr
+    purrr,
+    utils
