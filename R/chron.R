@@ -1,0 +1,50 @@
+# chron.R
+# chron_*; high-level functions for retrieving chronological data from XRONOS
+
+#' Get chronological data from XRONOS
+#'
+#' Retrieves chronological data from XRONOS. `chron_data()` retrieves all
+#' records. Additional parameters can be used to filter the results.
+#'
+#' @param ... (Optional) One or more named arguments specifying filter variables
+#'  and values to include. See [xronos_query()] for a list of filters supported
+#'  by the XRONOS API.
+#' @param .everything If `TRUE`, suppresses interactive mode prompt when
+#'  retrieving all records from XRONOS (see details).
+#'
+#' @details
+#'
+#' To reduce unnecessary server load, `get_xronos()` (without any filters) will
+#' prompt for confirmation in interactive mode interactive mode. Set
+#' `.everything = TRUE` to suppress this.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' # Get dates on charcoal or bone from Switzerland
+#' chron_data(country = "Switzerland", material = c("charcoal", "bone"))
+#'
+#' # Get all records from XRONOS
+#' chron_data()
+chron_data <- function(..., .everything = NA) {
+  params <- rlang::list2(...)
+
+  if (rlang::is_empty(params)) {
+    if (!isTRUE(.everything) && interactive()) {
+      answer <- utils::askYesNo("Download all records from XRONOS? (This may take some time.)",
+                                default = FALSE)
+      if (isTRUE(answer)) {
+        cli::cli_alert_info("Use `.everything = TRUE` to suppress this prompt in future.")
+      }
+      else {
+        return(invisible(NULL))
+      }
+    }
+
+    xronos_request()
+  }
+  else {
+    xronos_query(names(params), params)
+  }
+}
