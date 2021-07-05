@@ -1,12 +1,6 @@
 # xronos-api.R
 # Low-level functions for interacting with the XRONOS API
 
-#' @rdname xronos_request
-#' @export
-xronos_api_url <- function(version = "v1") {
-  "https://xronos.ch/api/v1/data"
-}
-
 #' Make a request to the XRONOS API
 #'
 #' Request data directly from the XRONOS API. See <https://xronos.ch/api> for
@@ -84,6 +78,16 @@ xronos_query <- function(filter, values) {
   query <- paste(filter_strings, collapse = "&")
 
   xronos_request(query)
+}
+
+
+
+# Helpers -----------------------------------------------------------------
+
+#' @rdname xronos_request
+#' @export
+xronos_api_url <- function(version = "v1") {
+  "https://xronos.ch/api/v1/data"
 }
 
 #' Check if a variable is in the list of filters supported by the XRONOS API
