@@ -2,12 +2,12 @@
 % Please edit documentation in R/xronos-api.R
 \name{xronos_api_url}
 \alias{xronos_api_url}
-\alias{xronos_query}
-\title{Query the XRONOS API}
+\alias{xronos_request}
+\title{Make a request to the XRONOS API}
 \usage{
 xronos_api_url(version = "v1")
 
-xronos_query(query, api_url = xronos_api_url())
+xronos_request(query = NA, api_url = xronos_api_url())
 }
 \arguments{
 \item{version}{Version of the API to use. Currently has no effect.}
@@ -21,9 +21,9 @@ the default value.}
 Parsed JSON response.
 }
 \description{
-Directly query the XRONOS API. See \url{https://xronos.ch/api} for supported
-formats.
+Request data directly from the XRONOS API. See \url{https://xronos.ch/api} for
+supported filters. Use \code{xronos_request()} to retrieve all data.
 }
 \examples{
-xronos_query("query_labnr=AAR-1847")
+xronos_request("query_labnr=AAR-1847")
 }

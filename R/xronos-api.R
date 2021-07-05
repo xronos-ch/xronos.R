@@ -1,16 +1,16 @@
 # xronos-api.R
 # Low-level functions for interacting with the XRONOS API
 
-#' @rdname xronos_query
+#' @rdname xronos_request
 #' @export
 xronos_api_url <- function(version = "v1") {
   "https://xronos.ch/api/v1/data"
 }
 
-#' Query the XRONOS API
+#' Make a request to the XRONOS API
 #'
-#' Directly query the XRONOS API. See <https://xronos.ch/api> for supported
-#' formats.
+#' Request data directly from the XRONOS API. See <https://xronos.ch/api> for
+#' supported filters. Use `xronos_request()` to retrieve all data.
 #'
 #' @param query Valid query string.
 #' @param api_url Root address of the XRONOS API. `xronos_api_url()` provides
@@ -23,9 +23,11 @@ xronos_api_url <- function(version = "v1") {
 #' @export
 #'
 #' @examples
-#' xronos_query("query_labnr=AAR-1847")
-xronos_query <- function(query, api_url = xronos_api_url()) {
-  url <- paste0(xronos_api_url(), "?", query)
+#' xronos_request("query_labnr=AAR-1847")
+xronos_request <- function(query = NA, api_url = xronos_api_url()) {
+  if (!is.na(query)) url <- paste0(xronos_api_url(), "?", query)
+  else url <- xronos_api_url()
+
   response <- httr::stop_for_status(httr::GET(url),
                                     task = "query XRONOS API")
 
