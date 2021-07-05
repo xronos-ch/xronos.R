@@ -5,6 +5,7 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R-CMD-check](https://github.com/xronos-ch/xronos.R/workflows/R-CMD-check/badge.svg)](https://github.com/xronos-ch/xronos.R/actions)
+[![Codecov test coverage](https://codecov.io/gh/xronos-ch/xronos.R/branch/master/graph/badge.svg)](https://codecov.io/gh/xronos-ch/xronos.R?branch=master)
 <!-- badges: end -->
 
 An R interface to [XRONOS](https://xronos.ch), a worldwide database of chronological information from archaeological contexts, including radiocarbon and dendrochronological data.
