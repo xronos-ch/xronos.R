@@ -29,7 +29,8 @@ Imports:
     rlang,
     purrr,
     utils,
-    cli
+    cli,
+    dplyr
 Suggests: 
     testthat (>= 3.0.0),
     covr
