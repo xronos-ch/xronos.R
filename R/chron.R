@@ -22,11 +22,8 @@
 #' @export
 #'
 #' @examples
-#' # Get dates on charcoal or bone from Switzerland
+#' # Dates on charcoal or bone from Switzerland
 #' chron_data(country = "Switzerland", material = c("charcoal", "bone"))
-#'
-#' # Get all records from XRONOS
-#' chron_data()
 chron_data <- function(..., .everything = NA) {
   params <- rlang::list2(...)
 
