@@ -23,9 +23,10 @@ xronos_request <- function(query = NA, api_url = xronos_api_url()) {
   else url <- xronos_api_url()
   url <- utils::URLencode(url)
 
-  response <- httr::stop_for_status(httr::GET(url),
-                                    task = "query XRONOS API")
+  response <- httr::GET(url, xronos_user_agent())
 
+  # Error handling
+  httr::stop_for_status(response, task = "query XRONOS API")
   if (httr::http_type(response) == "application/json") {
     result <- jsonlite::fromJSON(httr::content(response, as = "text"))
   }
@@ -89,6 +90,14 @@ xronos_query <- function(filter, values) {
 #' @export
 xronos_api_url <- function(version = "v1") {
   "https://xronos.ch/api/v1/data"
+}
+
+#' User agent string for http requests
+#'
+#' @keywords internal
+#' @noRd
+xronos_user_agent <- function() {
+  httr::user_agent("https://github.com/xronos-ch/xronos.R")
 }
 
 #' Check if a variable is in the list of filters supported by the XRONOS API
