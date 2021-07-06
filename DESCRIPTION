@@ -33,5 +33,6 @@ Imports:
     dplyr
 Suggests: 
     testthat (>= 3.0.0),
-    covr
+    covr,
+    sf
 Config/testthat/edition: 3
