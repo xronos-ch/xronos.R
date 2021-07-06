@@ -27,9 +27,6 @@ prompt for confirmation in interactive mode interactive mode. Set
 \code{.everything = TRUE} to suppress this.
 }
 \examples{
-# Get dates on charcoal or bone from Switzerland
+# Dates on charcoal or bone from Switzerland
 chron_data(country = "Switzerland", material = c("charcoal", "bone"))
-
-# Get all records from XRONOS
-chron_data()
 }
