@@ -1,5 +1,7 @@
 # xronos-api.R
-# Low-level functions for interacting with the XRONOS API
+# xronos_*, low-level functions for interacting with the XRONOS API
+
+# Request -----------------------------------------------------------------
 
 #' Make a request to the XRONOS API
 #'
@@ -25,18 +27,19 @@ xronos_request <- function(query = NA, api_url = xronos_api_url()) {
 
   response <- httr::GET(url, xronos_user_agent())
 
-  # Error handling
+  # Convert HTTP errors to R errors
+  # TODO: Check if acceptable to CRAN
   httr::stop_for_status(response, task = "query XRONOS API")
+
+  # Parse & return
   if (httr::http_type(response) == "application/json") {
-    result <- jsonlite::fromJSON(httr::content(response, as = "text"))
+    xronos_parse(response)
   }
   else {
     rlang::abort(paste0("Unexpected content type of response from XRONOS API:",
                         httr::http_type(response)),
                  class = "xronos_api_error")
   }
-
-  result
 }
 
 #' Query the XRONOS API
@@ -84,6 +87,31 @@ xronos_query <- function(filter, values) {
 
 
 
+# Parse -------------------------------------------------------------------
+
+#' Parse response from XRONOS API
+#'
+#' Extracts the content of a [httr::response] object and transforms it into a
+#' tidy data frame, replacing a variety of 'empty' values with `NA`.
+#'
+#' @details
+#' Currently makes no assumptions about data structure other than that data is
+#' nested within an object named "measurement".
+#' Might want to be more strict in future, but would prefer not to have to
+#' hard-code expectations from the API.
+#'
+#' @keywords internal
+#' @noRd
+xronos_parse <- function(response) {
+  content <- httr::content(response, as = "text")
+  result <- jsonlite::parse_json(content)
+  result <- purrr::map(result, normalise_empty)
+  result <- purrr::map_dfr(result, "measurement")
+
+  result
+}
+
+
 # Helpers -----------------------------------------------------------------
 
 #' @rdname xronos_request
@@ -115,4 +143,20 @@ xronos_assert_valid_filter <- function(x) {
   }
 
   invisible(x)
+}
+
+#' Normalise empty values in parsed JSON
+#'
+#' Recurse through the output of jsonlite::parse_json(), replacing empty values
+#' (`NULL`, empty lists) with `NA`.
+#'
+#' @keywords internal
+#' @noRd
+normalise_empty <- function(x) {
+  if (is.list(x)) {
+    if (length(x) == 0) NA
+    else purrr::map(x, normalise_empty)
+  }
+  else if (is.null(x)) NA
+  else x
 }
