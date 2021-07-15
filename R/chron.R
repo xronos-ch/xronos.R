@@ -66,7 +66,7 @@ chron_data <- function(..., .everything = NA) {
 #' @examples
 #' x <- chron_data(country = "Switzerland")
 #' chron_as_sf(x)
-chron_as_sf <- function(x, crs = sf::st_crs(4626)) {
+chron_as_sf <- function(x, crs = sf::st_crs(4326)) {
   if (requireNamespace("sf", quietly = TRUE)) {
     y <- x[!is.na(x$lng) & !is.na(x$lat),]
     y <- sf::st_as_sf(y, coords = c("lng", "lat"), crs = 4326)
@@ -76,7 +76,7 @@ chron_as_sf <- function(x, crs = sf::st_crs(4626)) {
       rlang::warn(paste("Dropped", d, "rows with missing or invalid coordinates."))
     }
 
-    if (crs != sf::st_crs(4626)) {
+    if (crs != sf::st_crs(4326)) {
       y <- sf::st_transform(y, crs)
     }
 
