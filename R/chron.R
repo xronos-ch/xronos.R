@@ -19,7 +19,6 @@
 #' prompt for confirmation in interactive mode interactive mode. Set
 #' `.everything = TRUE` to suppress this.
 #'
-#' @return
 #' @export
 #'
 #' @examples
@@ -73,7 +72,8 @@ chron_as_sf <- function(x, crs = sf::st_crs(4326)) {
 
     d <- nrow(x) - nrow(y)
     if (d > 0) {
-      rlang::warn(paste("Dropped", d, "rows with missing or invalid coordinates."))
+      rlang::warn(paste("Dropped", d, "rows with missing or invalid coordinates."),
+                  class = "xronos_lossy_conversion")
     }
 
     if (crs != sf::st_crs(4326)) {

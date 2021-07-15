@@ -14,9 +14,6 @@ by the XRONOS API.}
 \item{.everything}{If \code{TRUE}, suppresses interactive mode prompt when
 retrieving all records from XRONOS (see details).}
 }
-\value{
-
-}
 \description{
 Retrieves chronological data from XRONOS. \code{chron_data()} retrieves all
 records. Additional parameters can be used to filter the results.

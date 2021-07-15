@@ -4,7 +4,7 @@
 \alias{chron_as_sf}
 \title{Convert a table of chronological data to an sf object}
 \usage{
-chron_as_sf(x, crs = sf::st_crs(4626))
+chron_as_sf(x, crs = sf::st_crs(4326))
 }
 \arguments{
 \item{x}{data.frame retrieved with \code{\link[=chron_data]{chron_data()}}.}
