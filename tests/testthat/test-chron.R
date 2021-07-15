@@ -2,6 +2,8 @@
 # chron_data() ------------------------------------------------------------
 
 test_that("chron_data(...) correctly translates parameters to xronos_query()", {
+  skip_if_offline("xronos.ch")
+
   x <- chron_data(country = "Switzerland", material = c("bone", "charcoal"))
   y <- xronos_query(c("country", "material"), list("Switzerland", c("bone", "charcoal")))
   expect_equal(x, y)
