@@ -21,6 +21,11 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
 
       - uses: r-lib/actions/setup-pandoc@v1
+      
+       - name: Brew
+        if: runner.os == 'macOS'
+        run: |
+          brew install gdal
 
       - name: Query dependencies
         run: |
