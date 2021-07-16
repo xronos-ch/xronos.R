@@ -1,0 +1,130 @@
+---
+title: "Introduction into xronos"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction into xronos}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(xronos)
+```
+
+# Introduction
+
+The xronos package provides a R interface to XRONOS’s REST API, enabling the fast development of data analysis and visualisation tools. Besides providing an easy to use set of tools for retrieving the data from XRONOS, it also facilitates the access to R’s rich environment of statistical and data analysis open source tools.
+
+Features include:
+
+* Support for the REST API query parameters.
+* **More to be listed**
+
+XRONOS is an Open Source database for chronological informations developed by Clemens Schmid, Joe Roe and Martin Hinz for storing, analyzing and sharing absolutchronological data. General information about XRONOS can be found at [blog.xronos.ch](https://blog.xronos.ch) and resources for XRONOS developers can be found at [github.com/xronos-ch](https://github.com/xronos-ch).
+
+# Installation
+
+The development version can be installed using remotes:
+
+```{r, eval=FALSE}
+install.packages("remotes")
+remotes::install_github("xronos-ch/xronos")
+```
+
+Once installed, the package can be loaded with library:
+
+```{r}
+library(xronos)
+```
+
+# Data Retrieval
+
+The primary interface for retrieving data with xronos is the command `chron_data()`. You can access all data using:
+
+```{r, eval=FALSE}
+# We do not run this command, since it takes some time
+all_data <- chron_data()
+```
+
+But it is more advisable to be selective, and used to query options to specify which data are really requested. Currently you can specify the following search criteria:
+
+* "labnr"
+* "site"
+* "site_type"
+* "country"
+* "feature"
+* "material"
+* "species"
+
+For example, for retrieving all dates from Switzerland from either charcoal or bone, you can use the following command:
+
+```{r}
+swiss_data <- chron_data(country = "Switzerland", material = c("charcoal", "bone"))
+```
+
+As you can see from the output of the variable, the resulting data are formatted as a tibble.
+
+```{r}
+swiss_data
+```
+
+The command `chron_data()` Will probably be the most common entry point for most of the users. For advanced users, there is a different version of the request using the command `xronos_query` that uses two lists, one for the filters, the other one for the values that specify the filters. In that sense, the same result as above could be achieved using the following command:
+
+```{r}
+xronos_query(c("country", "material"), list("Switzerland", c("bone", "charcoal")))
+```
+
+# Transformation into a spatial dataset and mapping
+
+xronos has an inbuilt function `chron_as_sf()` for turning to received data into a special dataset for the package `sf`. Keep in mind, that this only works, if `sf` is installed on your machine.
+
+```{r}
+swiss_data.sf <- chron_as_sf(swiss_data)
+```
+
+The resulting special dataset can be used easily to map the results of the query, for example with the inbuild functions of `sf`:
+
+```{r}
+plot(sf::st_geometry(swiss_data.sf))
+```
+
+If you have map for example `ggmap` installed, you can get much more elaborated mapping directly:
+
+```{r}
+library(ggmap)
+bounding <- sf::st_bbox(swiss_data.sf)
+names(bounding) <- c("left","bottom","right","top") 
+
+map <- get_map(location = bounding, zoom = 8, maptype = "terrain", source = "stamen")
+
+# Just plotting, the geom_sf layer is not aligned properly:
+ggmap(map) + 
+  geom_sf(data = swiss_data.sf, inherit.aes = FALSE, color = "red")
+```
+
+# Calibration
+
+To calibrate to receive data, you can directly use the columns `bp` and `std` and use the calibration environment of your choice. Additionally, it might be helpful to use the `labnr` column to provide an id for your data. We suggest that you might use the `c14` package of Joe Roe. Other options might be for example `rcarbon`. :
+
+```{r}
+library(rcarbon)
+
+swiss_data.calibrated <- calibrate(x=swiss_data$bp,
+                                   errors=swiss_data$std,
+                                   ids = swiss_data$labnr,
+                                   verbose = F)
+```
+
+After that, you can visualise the calibration result with the appropriate tools from your selected package:
+
+```{r}
+multiplot(swiss_data.calibrated[1:5])
+```
+

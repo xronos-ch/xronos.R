@@ -35,5 +35,8 @@ Suggests:
     testthat (>= 3.0.0),
     covr,
     sf,
-    mockery
+    mockery,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
+VignetteBuilder: knitr, sf, ggmap, rcarbon
