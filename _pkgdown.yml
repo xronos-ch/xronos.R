@@ -1,0 +1,12 @@
+reference:
+- title: "Get chronological data"
+- contents:
+  - chron_data
+- title: "Conversion"
+  contents:
+  - chron_as_sf
+  - chron_drop_na_coords
+- title: "XRONOS API helpers"
+  desc: "Low-level functions for interacting with the XRONOS API"
+- contents:
+  - starts_with("xronos")
