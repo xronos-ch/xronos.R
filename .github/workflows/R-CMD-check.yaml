@@ -55,13 +55,13 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
-      - name: Brew
+      - name: Install system dependencies for sf (macOS)
         if: runner.os == 'macOS'
         run: |
           brew install gdal
           brew install proj
 
-      - name: Install system dependencies
+      - name: Install system dependencies (Linux)
         if: runner.os == 'Linux'
         run: |
           while read -r cmd
