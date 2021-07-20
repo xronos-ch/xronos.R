@@ -4,6 +4,7 @@
 
 #' Convert chronological data to an sf object
 #'
+#' @description
 #' `chron_as_sf()` adds a simple features geometry column (see [sf::st_sf]) to
 #' chronological data from XRONOS, using the latitude and longitude columns.
 #'

@@ -28,8 +28,7 @@ coordinates.
 \description{
 \code{chron_as_sf()} adds a simple features geometry column (see \link[sf:sf]{sf::st_sf}) to
 chronological data from XRONOS, using the latitude and longitude columns.
-}
-\details{
+
 \code{chron_drop_na_coords()} excludes rows with missing or invalid coordinates;
 it is implicitly called by \code{chron_as_sf()}, issuing a warning if any rows
 were removed.
