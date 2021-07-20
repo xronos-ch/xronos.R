@@ -37,6 +37,8 @@ Suggests:
     sf,
     mockery,
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggmap,
+    rcarbon
+VignetteBuilder: knitr
 Config/testthat/edition: 3
-VignetteBuilder: knitr, sf, ggmap, rcarbon
