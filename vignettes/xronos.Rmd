@@ -57,44 +57,66 @@ You can combine any number of parameters, and each parameter can take either a s
 
 For example, to get all radiocarbon dates from Switzerland on either charcoal or bone:
 
-```{r}
-swiss_data <- chron_data(country = "Switzerland", material = c("charcoal", "bone"))
+```{r get-swiss-data}
+chron_ch <- chron_data(country = "Switzerland", material = c("charcoal", "bone"))
 ```
 
 The results of the query are returned as a table of records (a `tibble` if tibble is installed, otherwise a data frame):
 
-```{r}
-swiss_data
+```{r show-swiss-data}
+chron_ch
 ```
 
 
-## Transformation into a spatial dataset and mapping
+## Map chronological data
 
-xronos has an inbuilt function `chron_as_sf()` for turning to received data into a special dataset for the package `sf`. Keep in mind, that this only works, if `sf` is installed on your machine.
+Wherever possible, XRONOS includes the geographic location of chrons, stored as latitude and longitude coordinates.
+The convenience function `chron_as_sf()` converts these coordinates into a 'simple features' geometry column for use with the sf package:
 
-```{r}
-swiss_data.sf <- chron_as_sf(swiss_data)
+```{r as-sf}
+if (!requireNamespace("sf")) install.packages("sf")
+library(sf)
+
+chron_as_sf(chron_ch)
 ```
 
-The resulting special dataset can be used easily to map the results of the query, for example with the inbuild functions of `sf`:
+The result is an `sf` object, which includes the original data, plus a geometry column representing the point coordinates and information on the coordinate reference system used.
 
-```{r}
-plot(sf::st_geometry(swiss_data.sf))
+Change the `crs` parameter to transform the geometries into another coordinate reference system.
+This can be anything understood by `sf::st_crs()`).
+For example, to use the Swiss National Grid ([EPSG:2056](https://epsg.io/2056)):
+
+```{r as-sf-projected}
+chron_as_sf(chron_ch, crs = 2056)
 ```
 
-If you have map for example `ggmap` installed, you can get much more elaborated mapping directly:
+Sometimes you might see a warning about rows with missing or invalid coordinates being dropped.
+This is because it is currently not possible to include rows without a geometry in a simple features table.
+To suppress the warning—and clarify your intent—you may want to explicitly remove these before calling `chron_as_sf()`:
+
+```{r as-sf-complete}
+chron_ch |>
+  chron_drop_na_geometry() |>
+  chron_as_sf(crs = 2056) ->
+  chron_ch
+```
+
+sf and related packages offer many options for manipulating, analysing, and mapping spatial data.
+As a simple example, we can plot the location of our dates using their natural projection (here we use `sf::st_geometry()` to plot only the points themselves, not their data attributes):
 
 ```{r}
-library(ggmap)
-bounding <- sf::st_bbox(swiss_data.sf)
-names(bounding) <- c("left","bottom","right","top") 
-
-map <- get_map(location = bounding, zoom = 8, maptype = "terrain", source = "stamen")
-
-# Just plotting, the geom_sf layer is not aligned properly:
-ggmap(map) + 
-  geom_sf(data = swiss_data.sf, inherit.aes = FALSE, color = "red")
+plot(sf::st_geometry(chron_ch), graticule = TRUE, axes = TRUE)
 ```
+
+See the [sf documentation](https://r-spatial.github.io/sf/articles/sf5.html) for more options for plotting simple features.
+
+`sf` objects generally act like data frames, but if necessary you can explicitly restore the plain table of data with `sf::st_drop_geometry()`:
+
+```{r undo-sf}
+chron_ch <- st_drop_geometry(chron_ch)
+```
+
+Note that this does *not* restore any records that were dropped by `chron_as_sf()`. 
 
 ## Calibration
 
