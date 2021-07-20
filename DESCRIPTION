@@ -1,6 +1,6 @@
 Package: xronos
 Type: Package
-Title: Interface for the XRONOS Chronological Database
+Title: Client for the 'XRONOS' Chronological Database
 Version: 0.0.0.9000
 Authors@R: c(person(given = "Martin", family = "Hinz",
                     role = "aut",
@@ -15,7 +15,7 @@ Authors@R: c(person(given = "Martin", family = "Hinz",
                     role = "ctb",
                     email = "clemens@nevrome.de",
                     comment = c(ORCID = "0000-0003-3448-5715")))
-Description: A programmatic interface to XRONOS <https://xronos.ch>, a 
+Description: A programmatic interface to 'XRONOS' <https://xronos.ch>, a 
     worldwide database of chronological information from archaeological 
     contexts, including radiocarbon and dendrochronological data.
 License: MIT + file LICENSE

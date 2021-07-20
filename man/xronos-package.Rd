@@ -4,9 +4,9 @@
 \name{xronos-package}
 \alias{xronos}
 \alias{xronos-package}
-\title{xronos: Interface for the XRONOS Chronological Database}
+\title{xronos: Client for the 'XRONOS' Chronological Database}
 \description{
-A programmatic interface to XRONOS <https://xronos.ch>, a 
+A programmatic interface to 'XRONOS' <https://xronos.ch>, a 
     worldwide database of chronological information from archaeological 
     contexts, including radiocarbon and dendrochronological data.
 }
