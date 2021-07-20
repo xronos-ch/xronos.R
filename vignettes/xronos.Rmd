@@ -96,7 +96,7 @@ To suppress the warning—and clarify your intent—you may want to explicitly r
 
 ```{r as-sf-complete}
 chron_ch |>
-  chron_drop_na_geometry() |>
+  chron_drop_na_coords() |>
   chron_as_sf(crs = 2056) ->
   chron_ch
 ```
@@ -124,6 +124,8 @@ To calibrate to receive data, you can directly use the columns `bp` and `std` an
 
 ```{r}
 library(rcarbon)
+
+swiss_data <- chron_ch
 
 swiss_data.calibrated <- calibrate(x=swiss_data$bp,
                                    errors=swiss_data$std,
