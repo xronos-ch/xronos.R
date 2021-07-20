@@ -29,39 +29,46 @@ It covers:
 library(xronos)
 ```
 
-# Data Retrieval
 
-The primary interface for retrieving data with xronos is the command `chron_data()`, which requests data via XRONOS' REST API.
-You can access all data using:
+## Get chronological data
 
-```{r, eval=FALSE}
-# We do not run this command, since it takes some time
-all_data <- chron_data()
+`chron_data()` provides an R interface to [XRONOS' REST API](https://xronos.ch/api) for retrieving chronological data.
+Without further parameters, it will request all available data from XRONOS.
+
+```{r get-all-data, eval=FALSE}
+chron_data()
 ```
 
-But it is more advisable to be selective, and used to query options to specify which data are really requested. Currently you can specify the following search criteria:
+Since this takes some time, you will be prompted to confirm this request.
+Use `chron_data(.everything = TRUE)` to confirm that you do want to download all records from XRONOS and suppress this prompt.
 
-* "labnr"
-* "site"
-* "site_type"
-* "country"
-* "feature"
-* "material"
-* "species"
+In practice, you'll probably want to narrow down the dataset with a search query.
+You can use the following parameters, passed as arguments to `chron_data()`, to filter the results:
 
-For example, for retrieving all dates from Switzerland from either charcoal or bone, you can use the following command:
+* `labnr`
+* `site`
+* `site_type`
+* `country`
+* `feature`
+* `material`
+* `species`
+
+You can combine any number of parameters, and each parameter can take either a single value or a vector of values that should be included in the results.
+
+For example, to get all radiocarbon dates from Switzerland on either charcoal or bone:
 
 ```{r}
 swiss_data <- chron_data(country = "Switzerland", material = c("charcoal", "bone"))
 ```
 
-As you can see from the output of the variable, the resulting data are formatted as a tibble.
+The results of the query are returned as a table of records (a `tibble` if tibble is installed, otherwise a data frame):
 
 ```{r}
 swiss_data
 ```
 
-# Transformation into a spatial dataset and mapping
+
+## Transformation into a spatial dataset and mapping
 
 xronos has an inbuilt function `chron_as_sf()` for turning to received data into a special dataset for the package `sf`. Keep in mind, that this only works, if `sf` is installed on your machine.
 
@@ -89,7 +96,7 @@ ggmap(map) +
   geom_sf(data = swiss_data.sf, inherit.aes = FALSE, color = "red")
 ```
 
-# Calibration
+## Calibration
 
 To calibrate to receive data, you can directly use the columns `bp` and `std` and use the calibration environment of your choice. Additionally, it might be helpful to use the `labnr` column to provide an id for your data. We suggest that you might use the `c14` package of Joe Roe. Other options might be for example `rcarbon`. :
 
