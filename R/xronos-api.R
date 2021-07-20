@@ -47,36 +47,21 @@ xronos_request <- function(query = NA, api_url = xronos_api_url()) {
 #' Constructs a query request to the XRONOS API by combining filter variables
 #' and values.
 #'
-#' @param filter Name of a variable or vector of variables to filter by.
-#'  Supported filters are `"labnr"`, `"site"`, `"site_type"`, `"country"`,
-#'  `"feature"`, `"material"`, and `"species"`.
+#' @param filter Name of a variable or vector of variables to filter by. See
+#'  [chron_data()] for a list of supported filters.
 #' @param values A vector of values to include. If more than one `filter` is
 #'  used, must be a list of the same length.
 #'
 #' @return
 #' Parsed JSON response.
 #'
-#' @export
+#' @noRd
+#' @keywords internal
 #'
 #' @examples
 #' xronos_query(c("site", "material"), list("Stonehenge", c("bone", "charcoal")))
 xronos_query <- function(filter, values) {
   purrr::map(filter, xronos_assert_valid_filter)
-
-  # Argument checking
-  if (length(filter) > 1) {
-    if (!is.list(values)) {
-      rlang::abort("If more than one filter is used, `values` must be a list.",
-                   class = "xronos_arg_error")
-    }
-    else if (length(filter) != length(values)) {
-      rlang::abort("`filter` and `values` must have the same length.",
-                   class = "xronos_arg_error")
-    }
-  }
-  else {
-    if (!is.list(values)) values <- list(values)
-  }
 
   value_strings <- purrr::map_chr(values, paste, collapse = "|")
   filter_strings <- paste0("query_", filter, "=", value_strings)

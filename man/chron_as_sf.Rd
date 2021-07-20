@@ -2,9 +2,12 @@
 % Please edit documentation in R/chron.R
 \name{chron_as_sf}
 \alias{chron_as_sf}
+\alias{chron_drop_na_coords}
 \title{Convert a table of chronological data to an sf object}
 \usage{
 chron_as_sf(x, crs = sf::st_crs(4326))
+
+chron_drop_na_coords(x, .warn = FALSE)
 }
 \arguments{
 \item{x}{data.frame retrieved with \code{\link[=chron_data]{chron_data()}}.}
@@ -12,14 +15,24 @@ chron_as_sf(x, crs = sf::st_crs(4326))
 \item{crs}{Desired coordinate reference system in a format understood by
 \code{\link[sf:st_crs]{sf::st_crs()}}. Defaults to latitude/longitude on the WGS84 ellipsoid
 (EPSG:4326).}
+
+\item{.warn}{If \code{TRUE}, issues a warning when rows are removed.}
 }
 \value{
-An \code{sf} object.
+\code{chron_as_sf()} returns \code{x} converted into an \code{sf} object. The original
+coordinate columns are retained.
+
+\code{chron_drop_na_coords()} returns \code{x} without rows with missing or invalid
+coordinates.
 }
 \description{
-Adds a simple features geometry column (see \link[sf:sf]{sf::st_sf}) to chronological
-data from XRONOS, using the latitude and longitude columns. Rows with missing
-or invalid coordinates will be dropped with a warning.
+\code{chron_as_sf()} adds a simple features geometry column (see \link[sf:sf]{sf::st_sf}) to
+chronological data from XRONOS, using the latitude and longitude columns.
+}
+\details{
+\code{chron_drop_na_coords()} excludes rows with missing or invalid coordinates;
+it is implicitly called by \code{chron_as_sf()}, issuing a warning if any rows
+were removed.
 }
 \examples{
 x <- chron_data(country = "Switzerland")

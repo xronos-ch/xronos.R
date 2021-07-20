@@ -8,8 +8,8 @@ chron_data(..., .everything = NA)
 }
 \arguments{
 \item{...}{(Optional) One or more named arguments specifying filter variables
-and values to include. See \code{\link[=xronos_query]{xronos_query()}} for a list of filters supported
-by the XRONOS API.}
+and values to include. Supported filters are \code{"labnr"}, \code{"site"},
+\code{"site_type"}, \code{"country"}, \code{"feature"}, \code{"material"}, and \code{"species"}.}
 
 \item{.everything}{If \code{TRUE}, suppresses interactive mode prompt when
 retrieving all records from XRONOS (see details).}

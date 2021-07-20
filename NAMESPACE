@@ -2,6 +2,6 @@
 
 export(chron_as_sf)
 export(chron_data)
+export(chron_drop_na_coords)
 export(xronos_api_url)
-export(xronos_query)
 export(xronos_request)
