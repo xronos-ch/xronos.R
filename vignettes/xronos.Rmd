@@ -75,12 +75,6 @@ As you can see from the output of the variable, the resulting data are formatted
 swiss_data
 ```
 
-The command `chron_data()` Will probably be the most common entry point for most of the users. For advanced users, there is a different version of the request using the command `xronos_query` that uses two lists, one for the filters, the other one for the values that specify the filters. In that sense, the same result as above could be achieved using the following command:
-
-```{r}
-xronos_query(c("country", "material"), list("Switzerland", c("bone", "charcoal")))
-```
-
 # Transformation into a spatial dataset and mapping
 
 xronos has an inbuilt function `chron_as_sf()` for turning to received data into a special dataset for the package `sf`. Keep in mind, that this only works, if `sf` is installed on your machine.

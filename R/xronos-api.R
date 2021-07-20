@@ -56,27 +56,13 @@ xronos_request <- function(query = NA, api_url = xronos_api_url()) {
 #' @return
 #' Parsed JSON response.
 #'
-#' @export
+#' @noRd
+#' @keywords internal
 #'
 #' @examples
 #' xronos_query(c("site", "material"), list("Stonehenge", c("bone", "charcoal")))
 xronos_query <- function(filter, values) {
   purrr::map(filter, xronos_assert_valid_filter)
-
-  # Argument checking
-  if (length(filter) > 1) {
-    if (!is.list(values)) {
-      rlang::abort("If more than one filter is used, `values` must be a list.",
-                   class = "xronos_arg_error")
-    }
-    else if (length(filter) != length(values)) {
-      rlang::abort("`filter` and `values` must have the same length.",
-                   class = "xronos_arg_error")
-    }
-  }
-  else {
-    if (!is.list(values)) values <- list(values)
-  }
 
   value_strings <- purrr::map_chr(values, paste, collapse = "|")
   filter_strings <- paste0("query_", filter, "=", value_strings)
