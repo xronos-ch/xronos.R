@@ -29,21 +29,6 @@ It covers:
 library(xronos)
 ```
 
-# Installation
-
-The development version can be installed using remotes:
-
-```{r, eval=FALSE}
-install.packages("remotes")
-remotes::install_github("xronos-ch/xronos")
-```
-
-Once installed, the package can be loaded with library:
-
-```{r}
-library(xronos)
-```
-
 # Data Retrieval
 
 The primary interface for retrieving data with xronos is the command `chron_data()`, which requests data via XRONOS' REST API.
