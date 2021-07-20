@@ -48,7 +48,7 @@ test_that("chron_as_sf() returns object with desired CRS", {
 
 test_that("chron_as_sf() warns about dropped rows", {
   load("../testdata/xronos_ch.RData")
-  expect_warning(chron_as_sf(xronos_ch), class = "xronos_lossy_conversion")
+  expect_warning(chron_as_sf(xronos_ch), class = "xronos_lossy_operation")
 })
 
 test_that("chron_as_sf() fails gracefully if {sf} is not installed", {

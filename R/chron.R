@@ -96,7 +96,7 @@ chron_drop_na_coords <- function(x, .warn = FALSE) {
   y <- x[!is.na(x$lng) & !is.na(x$lat),]
 
   d <- nrow(x) - nrow(y)
-  if (d > 0 & isTRUE(message)) {
+  if (d > 0 & isTRUE(.warn)) {
     rlang::warn(paste(d, "rows with missing or invalid coordinates were removed."),
                 class = "xronos_lossy_operation")
   }
