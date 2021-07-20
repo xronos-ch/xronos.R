@@ -8,8 +8,8 @@
 #' records. Additional parameters can be used to filter the results.
 #'
 #' @param ... (Optional) One or more named arguments specifying filter variables
-#'  and values to include. See [xronos_query()] for a list of filters supported
-#'  by the XRONOS API.
+#'  and values to include. Supported filters are `"labnr"`, `"site"`,
+#'  `"site_type"`, `"country"`, `"feature"`, `"material"`, and `"species"`.
 #' @param .everything If `TRUE`, suppresses interactive mode prompt when
 #'  retrieving all records from XRONOS (see details).
 #'

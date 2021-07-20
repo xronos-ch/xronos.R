@@ -47,9 +47,8 @@ xronos_request <- function(query = NA, api_url = xronos_api_url()) {
 #' Constructs a query request to the XRONOS API by combining filter variables
 #' and values.
 #'
-#' @param filter Name of a variable or vector of variables to filter by.
-#'  Supported filters are `"labnr"`, `"site"`, `"site_type"`, `"country"`,
-#'  `"feature"`, `"material"`, and `"species"`.
+#' @param filter Name of a variable or vector of variables to filter by. See
+#'  [chron_data()] for a list of supported filters.
 #' @param values A vector of values to include. If more than one `filter` is
 #'  used, must be a list of the same length.
 #'
