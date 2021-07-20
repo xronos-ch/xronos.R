@@ -57,3 +57,14 @@ test_that("chron_as_sf() fails gracefully if {sf} is not installed", {
   mockery::stub(chron_as_sf, "requireNamespace", FALSE)
   expect_error(chron_as_sf(xronos_ch), class = "xronos_missing_package")
 })
+
+test_that("chron_drop_na_coords() finds NAs in both columns", {
+  missing_lng <- data.frame(lng = c(0, 1, NA), lat = c(0, 1, 2))
+  missing_lat <- data.frame(lng = c(0, 1, 2), lat = c(0, 1, NA))
+  missing_both <- data.frame(lng = c(0, 1, NA), lat = c(0, 1, NA))
+  complete <- data.frame(lng = c(0, 1), lat = c(0, 1))
+
+  expect_equal(chron_drop_na_coords(missing_lng), complete)
+  expect_equal(chron_drop_na_coords(missing_lat), complete)
+  expect_equal(chron_drop_na_coords(missing_both), complete)
+})
