@@ -1,8 +1,8 @@
 ---
-title: "Introduction into xronos"
+title: "Chronological data from XRONOS in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction into xronos}
+  %\VignetteIndexEntry{Chronological data from XRONOS in R}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,20 +14,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+[XRONOS](https://xronos.ch) is a worldwide database of chronological data (such as radiocarbon or dendrochronological dates) from archaeological contexts.
+The xronos package allows you to retrieve data from XRONOS directly using R.
+It also provides tools for inspecting and transforming this data for analysis with commonly-used packages.
+
+This vignette introduces the main features of the xronos package.
+It covers:
+
+* Querying and retrieving chronological data from XRONOS with `chron_data()`
+* Calibrating radiocarbon dates with xronos and c14
+* Mapping chronological data with xronos and sf
+
 ```{r setup}
 library(xronos)
 ```
-
-# Introduction
-
-The xronos package provides a R interface to XRONOS’s REST API, enabling the fast development of data analysis and visualisation tools. Besides providing an easy to use set of tools for retrieving the data from XRONOS, it also facilitates the access to R’s rich environment of statistical and data analysis open source tools.
-
-Features include:
-
-* Support for the REST API query parameters.
-* **More to be listed**
-
-XRONOS is an Open Source database for chronological informations developed by Clemens Schmid, Joe Roe and Martin Hinz for storing, analyzing and sharing absolutchronological data. General information about XRONOS can be found at [blog.xronos.ch](https://blog.xronos.ch) and resources for XRONOS developers can be found at [github.com/xronos-ch](https://github.com/xronos-ch).
 
 # Installation
 
@@ -46,7 +46,8 @@ library(xronos)
 
 # Data Retrieval
 
-The primary interface for retrieving data with xronos is the command `chron_data()`. You can access all data using:
+The primary interface for retrieving data with xronos is the command `chron_data()`, which requests data via XRONOS' REST API.
+You can access all data using:
 
 ```{r, eval=FALSE}
 # We do not run this command, since it takes some time
