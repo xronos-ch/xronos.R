@@ -25,3 +25,13 @@ You can install the released version of xronos from [CRAN](https://CRAN.R-projec
 install.packages("xronos")
 ```
 -->
+
+## Usage
+
+Use `chron_data()` to get chronological data, using any of the search parameters supported by [the XRONOS API](https://xronos.ch/api):
+
+``` r
+chron_data(country = "Switzerland", material = c("charcoal", "bone"))
+```
+
+For further usage, see the [introductory vignette](https://xronos-ch.github.io/xronos.R/articles/xronos.html) (`vignette("xronos")`).
