@@ -2,19 +2,22 @@ Package: xronos
 Type: Package
 Title: Client for the 'XRONOS' Chronological Database
 Version: 0.0.0.9000
-Authors@R: c(person(given = "Martin", family = "Hinz",
-                    role = "aut",
-                    email = "martin.hinz@iaw.unibe.ch",
-                    comment = c(ORCID = "0000-0002-9904-6548")),
-             person(given = "Joe", family = "Roe",
-                    role = c("aut", "cre"),
-                    email = "joe@joeroe.io",
-                    comment = c(ORCID = "0000-0002-1011-1244")),
-             person(given = "Clemens",
-                    family = "Schmid",
-                    role = "ctb",
-                    email = "clemens@nevrome.de",
-                    comment = c(ORCID = "0000-0003-3448-5715")))
+Authors@R: c(
+        person(given = "Martin", family = "Hinz",
+               role = "aut",
+               email = "martin.hinz@iaw.unibe.ch",
+               comment = c(ORCID = "0000-0002-9904-6548")),
+        person(given = "Joe", family = "Roe",
+               role = c("aut", "cre"),
+               email = "joe@joeroe.io",
+               comment = c(ORCID = "0000-0002-1011-1244")),
+        person(given = "Clemens",
+               family = "Schmid",
+               role = "ctb",
+               email = "clemens@nevrome.de",
+               comment = c(ORCID = "0000-0003-3448-5715")),
+        person("Swiss National Science Foundation", role = "fnd")
+    )
 Description: A programmatic interface to 'XRONOS' <https://xronos.ch>, a 
     worldwide database of chronological information from archaeological 
     contexts, including radiocarbon and dendrochronological data.

@@ -30,6 +30,7 @@ Authors:
 Other contributors:
 \itemize{
   \item Clemens Schmid \email{clemens@nevrome.de} (\href{https://orcid.org/0000-0003-3448-5715}{ORCID}) [contributor]
+  \item Swiss National Science Foundation [funder]
 }
 
 }

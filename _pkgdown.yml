@@ -1,6 +1,11 @@
 home:
   title: "R client for XRONOS"
 
+authors:
+  Swiss National Science Foundation:
+    href: "https://www.snf.ch"
+    html: "<img src='man/figures/snsf_logo.png' height='32'>"
+
 reference:
 - title: "Get chronological data"
 - contents:
