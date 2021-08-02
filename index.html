@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Client for the XRONOS Chronological Database • xronos</title>
+<title>R client for XRONOS • xronos</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Client for the XRONOS Chronological Database">
+<script src="pkgdown.js"></script><meta property="og:title" content="R client for XRONOS">
 <meta property="og:description" content="A programmatic interface to XRONOS &lt;https://xronos.ch&gt;, a 
     worldwide database of chronological information from archaeological 
     contexts, including radiocarbon and dendrochronological data.">
@@ -59,7 +59,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/xronos-ch/xronos.R/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -104,7 +111,16 @@ install.packages("xronos")
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/xronos-ch/xronos.R/">https://​github.com/​xronos-ch/​xronos.R/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/xronos-ch/xronos.R/issues">https://​github.com/​xronos-ch/​xronos.R/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -116,6 +132,8 @@ install.packages("xronos")
 <ul class="list-unstyled">
 <li>Martin Hinz <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-9904-6548" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Joe Roe <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1011-1244" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>
+<a href="https://www.snf.ch"><img src="reference/figures/snsf_logo.png" height="32"></a> <br><small class="roles"> Funder </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -134,7 +152,7 @@ install.packages("xronos")
 
 
       <footer><div class="copyright">
-  <p>Developed by Martin Hinz, Joe Roe.</p>
+  <p>Developed by Martin Hinz, Joe Roe, <a href="https://www.snf.ch"><img src="reference/figures/snsf_logo.png" height="32"></a>.</p>
 </div>
 
 <div class="pkgdown">
