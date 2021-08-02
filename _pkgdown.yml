@@ -1,10 +1,14 @@
+template:
+  params:
+    bootswatch: yeti
+
 home:
   title: "R client for XRONOS"
 
 authors:
   Swiss National Science Foundation:
     href: "https://www.snf.ch"
-    html: "<img src='man/figures/snsf_logo.png' height='32'>"
+    html: "<img src='man/figures/snsf_logo.png' title='Swiss National Science Foundation' height='32'>"
 
 reference:
 - title: "Get chronological data"
