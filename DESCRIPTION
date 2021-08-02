@@ -18,6 +18,8 @@ Authors@R: c(person(given = "Martin", family = "Hinz",
 Description: A programmatic interface to 'XRONOS' <https://xronos.ch>, a 
     worldwide database of chronological information from archaeological 
     contexts, including radiocarbon and dendrochronological data.
+URL: https://r.xronos.ch, https://github.com/xronos-ch/xronos.R
+BugReports: https://github.com/xronos-ch/xronos.R/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

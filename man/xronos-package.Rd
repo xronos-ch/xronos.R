@@ -10,6 +10,15 @@ A programmatic interface to 'XRONOS' <https://xronos.ch>, a
     worldwide database of chronological information from archaeological 
     contexts, including radiocarbon and dendrochronological data.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://r.xronos.ch}
+  \item \url{https://github.com/xronos-ch/xronos.R}
+  \item Report bugs at \url{https://github.com/xronos-ch/xronos.R/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Joe Roe \email{joe@joeroe.io} (\href{https://orcid.org/0000-0002-1011-1244}{ORCID})
 
