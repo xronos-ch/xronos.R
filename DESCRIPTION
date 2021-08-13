@@ -3,14 +3,14 @@ Type: Package
 Title: Client for the 'XRONOS' Chronological Database
 Version: 0.0.0.9000
 Authors@R: c(
-        person(given = "Martin", family = "Hinz",
-               role = "aut",
-               email = "martin.hinz@iaw.unibe.ch",
-               comment = c(ORCID = "0000-0002-9904-6548")),
         person(given = "Joe", family = "Roe",
                role = c("aut", "cre"),
                email = "joe@joeroe.io",
                comment = c(ORCID = "0000-0002-1011-1244")),
+        person(given = "Martin", family = "Hinz",
+               role = "aut",
+               email = "martin.hinz@iaw.unibe.ch",
+               comment = c(ORCID = "0000-0002-9904-6548")),
         person(given = "Clemens",
                family = "Schmid",
                role = "ctb",
