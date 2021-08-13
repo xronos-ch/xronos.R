@@ -1,0 +1,13 @@
+citHeader("To cite package 'xronos' in publications use:")
+
+citEntry(entry = "Manual",
+         title = "xronos: Client for the 'XRONOS' Chronological Database",
+         author = "Joe Roe and Martin Hinz",
+         year = "2021",
+         url = "https://r.xronos.ch",
+         note = "R package version 0.0.0.9000",
+         textVersion = "Roe, Joe and Martin Hinz (2021). xronos: Client for the 'XRONOS' Chronological Database. R package version 0.0.0.9000. https://r.xronos.ch"
+         )
+
+citFooter("Please cite both 'xronos' and R when using 'xronos'.",
+          "For R citation, see ", sQuote("citation()"))
