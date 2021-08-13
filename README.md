@@ -42,11 +42,11 @@ If you use xronos in academic work, please consider citing:
 
 To cite package 'xronos' in publications use:
 
-  Roe, Joe and Martin Hinz (2021). xronos: Client for the 'XRONOS' Chronological Database. R package version 0.0.0.9000.
-  https://r.xronos.ch
+> Roe, Joe and Martin Hinz (2021). xronos: Client for the 'XRONOS' Chronological Database. R package version 0.0.0.9000. https://r.xronos.ch
 
 A BibTeX entry for LaTeX users is
 
+```bib
   @Manual{,
     title = {xronos: Client for the 'XRONOS' Chronological Database},
     author = {Joe Roe and Martin Hinz},
@@ -54,6 +54,7 @@ A BibTeX entry for LaTeX users is
     url = {https://r.xronos.ch},
     note = {R package version 0.0.0.9000},
   }
+```
   
 Please cite both 'xronos' and R when using 'xronos'. For R citation, see ‘citation()’
 
@@ -62,3 +63,4 @@ You can also get this citation information using
 ``` r
 citation("xronos")
 ```
+
