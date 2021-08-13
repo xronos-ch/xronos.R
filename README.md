@@ -35,3 +35,30 @@ chron_data(country = "Switzerland", material = c("charcoal", "bone"))
 ```
 
 For further usage, see the [introductory vignette](https://xronos-ch.github.io/xronos.R/articles/xronos.html) (`vignette("xronos")`).
+
+## Citation
+
+If you use xronos in academic work, please consider citing:
+
+To cite package 'xronos' in publications use:
+
+  Roe, Joe and Martin Hinz (2021). xronos: Client for the 'XRONOS' Chronological Database. R package version 0.0.0.9000.
+  https://r.xronos.ch
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {xronos: Client for the 'XRONOS' Chronological Database},
+    author = {Joe Roe and Martin Hinz},
+    year = {2021},
+    url = {https://r.xronos.ch},
+    note = {R package version 0.0.0.9000},
+  }
+  
+Please cite both 'xronos' and R when using 'xronos'. For R citation, see ‘citation()’
+
+You can also get this citation information using 
+
+``` r
+citation("xronos")
+```
