@@ -2,10 +2,11 @@
 # xronos <a href="https://r.xronos.ch"><img src="man/figures/logo.svg" align="right" height="139" /></a>
 
 <!-- badges: start -->
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN status](https://www.r-pkg.org/badges/version/xronos)](https://CRAN.R-project.org/package=xronos)
 [![R-CMD-check](https://github.com/xronos-ch/xronos.R/workflows/R-CMD-check/badge.svg)](https://github.com/xronos-ch/xronos.R/actions)
 [![Codecov test coverage](https://codecov.io/gh/xronos-ch/xronos.R/branch/master/graph/badge.svg)](https://codecov.io/gh/xronos-ch/xronos.R?branch=master)
+[![DOI](https://zenodo.org/badge/207299008.svg)](https://zenodo.org/badge/latestdoi/207299008)
 <!-- badges: end -->
 
 An R client to [XRONOS](https://xronos.ch), a worldwide database of chronological information from archaeological contexts, including radiocarbon and dendrochronological data.
