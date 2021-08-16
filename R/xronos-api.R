@@ -122,8 +122,7 @@ xronos_api_url <- function(version = "v1", base_url = xronos_url()) {
   if (version == "v1") paste0(base_url, "/api/v1/data")
   else {
     rlang::abort(
-      paste0("Version '", version,
-             "' of the XRONOS API is not supported by this version of xronos."),
+      paste0("API version '", version, "' is not supported by this version of xronos."),
       class = "xronos_api_error"
     )
   }
