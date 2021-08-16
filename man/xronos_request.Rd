@@ -2,20 +2,15 @@
 % Please edit documentation in R/xronos-api.R
 \name{xronos_request}
 \alias{xronos_request}
-\alias{xronos_api_url}
 \title{Make a request to the XRONOS API}
 \usage{
 xronos_request(query = NA, api_url = xronos_api_url())
-
-xronos_api_url(version = "v1")
 }
 \arguments{
 \item{query}{Valid query string.}
 
 \item{api_url}{Root address of the XRONOS API. \code{xronos_api_url()} provides
 the default value.}
-
-\item{version}{Version of the API to use. Currently has no effect.}
 }
 \value{
 Parsed JSON response.

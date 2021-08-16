@@ -11,7 +11,6 @@
 #' @param query Valid query string.
 #' @param api_url Root address of the XRONOS API. `xronos_api_url()` provides
 #'  the default value.
-#' @param version Version of the API to use. Currently has no effect.
 #'
 #' @return
 #' Parsed JSON response.
@@ -99,10 +98,35 @@ xronos_parse <- function(response) {
 
 # Helpers -----------------------------------------------------------------
 
-#' @rdname xronos_request
+#' XRONOS web address
+#'
+#' Returns the current base URL of XRONOS, or the address of the API version
+#' specified.
+#'
+#' @param base_url Base URL of XRONOS.
+#' @param version Version of the API to use. Currently has no effect.
+#'
 #' @export
-xronos_api_url <- function(version = "v1") {
-  "https://xronos.ch/api/v1/data"
+#'
+#' @examples
+#' xronos_url()
+#'
+#' xronos_api_url()
+xronos_url <- function() {
+  "https://xronos.ch"
+}
+
+#' @rdname xronos_url
+#' @export
+xronos_api_url <- function(base_url = xronos_url(), version = "v1") {
+  if (version == "v1") paste0(base_url, "/api/v1/data")
+  else {
+    rlang::abort(
+      paste0("Version '", version,
+             "' of the XRONOS API is not supported by this version of xronos."),
+      class = "xronos_api_error"
+    )
+  }
 }
 
 #' User agent string for http requests
