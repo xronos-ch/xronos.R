@@ -24,3 +24,8 @@ test_that("we can distinguish between valid and invalid filters", {
   expect_error(xronos_assert_valid_filter("an invalid criterion"),
                class = "xronos_invalid_request")
 })
+
+test_that("xronos_api_url() returns correct addresses for valid API versions", {
+  expect_equal(xronos_api_url("v1"), "https://xronos.ch/api/v1/data")
+  expect_error(xronos_api_url("v0"), class = "xronos_api_error")
+})
