@@ -103,8 +103,8 @@ xronos_parse <- function(response) {
 #' Returns the current base URL of XRONOS, or the address of the API version
 #' specified.
 #'
-#' @param base_url Base URL of XRONOS.
 #' @param version Version of the API to use. Currently has no effect.
+#' @param base_url Base URL of XRONOS.
 #'
 #' @export
 #'
@@ -118,7 +118,7 @@ xronos_url <- function() {
 
 #' @rdname xronos_url
 #' @export
-xronos_api_url <- function(base_url = xronos_url(), version = "v1") {
+xronos_api_url <- function(version = "v1", base_url = xronos_url()) {
   if (version == "v1") paste0(base_url, "/api/v1/data")
   else {
     rlang::abort(

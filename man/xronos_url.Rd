@@ -7,12 +7,12 @@
 \usage{
 xronos_url()
 
-xronos_api_url(base_url = xronos_url(), version = "v1")
+xronos_api_url(version = "v1", base_url = xronos_url())
 }
 \arguments{
-\item{base_url}{Base URL of XRONOS.}
-
 \item{version}{Version of the API to use. Currently has no effect.}
+
+\item{base_url}{Base URL of XRONOS.}
 }
 \description{
 Returns the current base URL of XRONOS, or the address of the API version
