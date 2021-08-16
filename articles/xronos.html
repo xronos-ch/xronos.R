@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">xronos</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -55,6 +55,9 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -135,8 +138,8 @@
 <span class="co">#&gt;  9 14013 B-2113   NA        radon            5780   270   6610     613        NA</span>
 <span class="co">#&gt; 10 16324 CRC-354  NA        radon            3700    85   4044     259         0</span>
 <span class="co">#&gt; # … with 187 more rows, and 12 more variables: site &lt;chr&gt;, site_phase &lt;chr&gt;,</span>
-<span class="co">#&gt; #   feature &lt;chr&gt;, period &lt;lgl&gt;, typochronological_unit &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   ecochronological_unit &lt;lgl&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span>
+<span class="co">#&gt; #   feature &lt;chr&gt;, period &lt;named list&gt;, typochronological_unit &lt;named list&gt;,</span>
+<span class="co">#&gt; #   ecochronological_unit &lt;named list&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span>
 <span class="co">#&gt; #   country &lt;chr&gt;, species &lt;chr&gt;, site_type &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="calibrating-radiocarbon-data" class="section level2">
@@ -184,8 +187,8 @@
 <span class="co">#&gt;  9 16324 CRC-354  NA        radon            3700    85   4044     259         0</span>
 <span class="co">#&gt; 10 16330 CRC-1073 NA        radon            4986   174   5737     410         0</span>
 <span class="co">#&gt; # … with 180 more rows, and 13 more variables: site &lt;chr&gt;, site_phase &lt;chr&gt;,</span>
-<span class="co">#&gt; #   feature &lt;chr&gt;, period &lt;lgl&gt;, typochronological_unit &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   ecochronological_unit &lt;lgl&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span>
+<span class="co">#&gt; #   feature &lt;chr&gt;, period &lt;named list&gt;, typochronological_unit &lt;named list&gt;,</span>
+<span class="co">#&gt; #   ecochronological_unit &lt;named list&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span>
 <span class="co">#&gt; #   country &lt;chr&gt;, species &lt;chr&gt;, site_type &lt;chr&gt;, geometry &lt;POINT [°]&gt;</span></code></pre></div>
 <p>The result is an <code>sf</code> object, which includes the original data, plus a geometry column representing the point coordinates and information on the coordinate reference system used.</p>
 <p>Change the <code>crs</code> parameter to transform the geometries into another coordinate reference system. This can be anything understood by <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">sf::st_crs()</a></code>). For example, to use the Swiss National Grid (<a href="https://epsg.io/2056">EPSG:2056</a>):</p>
@@ -211,8 +214,8 @@
 <span class="co">#&gt;  9 16324 CRC-354  NA        radon            3700    85   4044     259         0</span>
 <span class="co">#&gt; 10 16330 CRC-1073 NA        radon            4986   174   5737     410         0</span>
 <span class="co">#&gt; # … with 180 more rows, and 13 more variables: site &lt;chr&gt;, site_phase &lt;chr&gt;,</span>
-<span class="co">#&gt; #   feature &lt;chr&gt;, period &lt;lgl&gt;, typochronological_unit &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   ecochronological_unit &lt;lgl&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span>
+<span class="co">#&gt; #   feature &lt;chr&gt;, period &lt;named list&gt;, typochronological_unit &lt;named list&gt;,</span>
+<span class="co">#&gt; #   ecochronological_unit &lt;named list&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span>
 <span class="co">#&gt; #   country &lt;chr&gt;, species &lt;chr&gt;, site_type &lt;chr&gt;, geometry &lt;POINT [m]&gt;</span></code></pre></div>
 <p>Sometimes you might see a warning about rows with missing or invalid coordinates being dropped. This is because it is currently not possible to include rows without a geometry in a simple features table. To suppress the warning—and clarify your intent—you may want to explicitly remove these before calling <code><a href="../reference/chron_as_sf.html">chron_as_sf()</a></code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
