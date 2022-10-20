@@ -1,5 +1,5 @@
 
-# xronos <a href="https://r.xronos.ch"><img src="man/figures/logo.svg" align="right" height="139" /></a>
+# xronos <a href="https://r.xronos.ch"><img src="man/figures/logo.svg" align="right" style="float: right; height: 180px; margin-left: 1em"></a>
 
 <!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
