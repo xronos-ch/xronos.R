@@ -58,7 +58,7 @@ records. Additional parameters can be used to filter the results.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">chron_data</span><span class="op">(</span><span class="va">...</span>, .everything <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">chron_data</span><span class="op">(</span><span class="va">...</span>, .everything <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,9 +67,12 @@ records. Additional parameters can be used to filter the results.</p>
 <dd><p>(Optional) One or more named arguments specifying filter variables
 and values to include. Supported filters are <code>"labnr"</code>, <code>"site"</code>,
 <code>"site_type"</code>, <code>"country"</code>, <code>"feature"</code>, <code>"material"</code>, and <code>"species"</code>.</p></dd>
+
+
 <dt>.everything</dt>
 <dd><p>If <code>TRUE</code>, suppresses interactive mode prompt when
 retrieving all records from XRONOS (see details).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -80,25 +83,26 @@ prompt for confirmation in interactive mode interactive mode. Set
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Dates on charcoal or bone from Switzerland</span></span>
-<span class="r-in"><span class="fu">chron_data</span><span class="op">(</span>country <span class="op">=</span> <span class="st">"Switzerland"</span>, material <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"charcoal"</span>, <span class="st">"bone"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Dates on charcoal or bone from Switzerland</span></span></span>
+<span class="r-in"><span><span class="fu">chron_data</span><span class="op">(</span>country <span class="op">=</span> <span class="st">"Switzerland"</span>, material <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"charcoal"</span>, <span class="st">"bone"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 558 × 21</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       id labnr    reference source_database    bp   std cal_bp cal_std delta_c13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">24</span>781 ETH-599… <span style="color: #BB0000;">NA</span>        radonb           <span style="text-decoration: underline;">3</span>355    30   <span style="text-decoration: underline;">3</span>582      98        <span style="color: #BB0000;">NA</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">86</span>489 ETH-9647 <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">3</span>885    80   <span style="text-decoration: underline;">4</span>303     219         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">86</span>500 ETH-111… <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">3</span>845    60   <span style="text-decoration: underline;">4</span>258     166         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">86</span>521 ETH-9653 <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">4</span>490    75   <span style="text-decoration: underline;">5</span>134     243         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">86</span>561 B-3395   <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">3</span>835    60   <span style="text-decoration: underline;">4</span>243     172         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">86</span>564 B-3610   <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">2</span>960    70   <span style="text-decoration: underline;">3</span>122     208         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">86</span>572 Ua-20702 <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">2</span>610    45   <span style="text-decoration: underline;">2</span>741     194         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">86</span>573 ETH-284… <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">3</span>505    50   <span style="text-decoration: underline;">3</span>773     137         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">86</span>579 ETH-331… <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">3</span>305    50   <span style="text-decoration: underline;">3</span>525     132         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">86</span>581 ETH-331… <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">3</span>285    50   <span style="text-decoration: underline;">3</span>505     121         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 548 more rows, and 12 more variables: site &lt;chr&gt;, site_phase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   site_type &lt;chr&gt;, feature &lt;chr&gt;, period &lt;named list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   typochronological_unit &lt;named list&gt;, ecochronological_unit &lt;named list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;, country &lt;chr&gt;, species &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id labnr  refer…¹ sourc…²    bp   std cal_bp cal_std delta…³ site  site_…⁴</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> <span style="text-decoration: underline;">24</span>283 CRC-3… <span style="color: #BB0000;">NA</span>      radon    <span style="text-decoration: underline;">3</span>910    60   <span style="text-decoration: underline;">4</span>334     176       0 Ranc… Rances…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> <span style="text-decoration: underline;">27</span>588 ETH-3… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">3</span>060    40   <span style="text-decoration: underline;">3</span>272     103      <span style="color: #BB0000;">NA</span> Schn… Schnap…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> <span style="text-decoration: underline;">27</span>595 ETH-6… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">3</span>467    29   <span style="text-decoration: underline;">3</span>745      96      <span style="color: #BB0000;">NA</span> Val … Val Fe…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> <span style="text-decoration: underline;">27</span>599 ETH-5… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">2</span>882    29   <span style="text-decoration: underline;">3</span>010     122      <span style="color: #BB0000;">NA</span> Val … Val Ta…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> <span style="text-decoration: underline;">27</span>600 ETH-6… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">2</span>518    25   <span style="text-decoration: underline;">2</span>585     135      <span style="color: #BB0000;">NA</span> Val … Val Ta…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> <span style="text-decoration: underline;">27</span>659 ETH-5… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">3</span>356    30   <span style="text-decoration: underline;">3</span>584      98      <span style="color: #BB0000;">NA</span> Val … Val Ur…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> <span style="text-decoration: underline;">27</span>746 ETH-4… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">2</span>520    25   <span style="text-decoration: underline;">2</span>586     135      <span style="color: #BB0000;">NA</span> Val … Val Ur…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> <span style="text-decoration: underline;">28</span>999 B-240… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">2</span>600   100   <span style="text-decoration: underline;">2</span>673     275      <span style="color: #BB0000;">NA</span> Padn… Padnal </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> <span style="text-decoration: underline;">30</span>505 ETH-5… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">2</span>633    29   <span style="text-decoration: underline;">2</span>752      60      <span style="color: #BB0000;">NA</span> Val … Val Fe…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> <span style="text-decoration: underline;">30</span>508 ETH-5… <span style="color: #BB0000;">NA</span>      radonb   <span style="text-decoration: underline;">2</span>530    29   <span style="text-decoration: underline;">2</span>600     129      <span style="color: #BB0000;">NA</span> Val … Val Fe…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 548 more rows, 10 more variables: site_type &lt;chr&gt;, feature &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   periods &lt;list&gt;, typochronological_units &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ecochronological_units &lt;list&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   country &lt;chr&gt;, species &lt;chr&gt;, and abbreviated variable names ¹​reference,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​source_database, ³​delta_c13, ⁴​site_phase</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -113,7 +117,7 @@ prompt for confirmation in interactive mode interactive mode. Set
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

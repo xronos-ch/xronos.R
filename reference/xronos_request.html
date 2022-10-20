@@ -58,33 +58,38 @@ supported filters. Use <code>xronos_request()</code> to retrieve all data.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">xronos_request</span><span class="op">(</span>query <span class="op">=</span> <span class="cn">NA</span>, api_url <span class="op">=</span> <span class="fu"><a href="xronos_url.html">xronos_api_url</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">xronos_request</span><span class="op">(</span>query <span class="op">=</span> <span class="cn">NA</span>, api_url <span class="op">=</span> <span class="fu"><a href="xronos_url.html">xronos_api_url</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>query</dt>
 <dd><p>Valid query string.</p></dd>
+
+
 <dt>api_url</dt>
 <dd><p>Root address of the XRONOS API. <code><a href="xronos_url.html">xronos_api_url()</a></code> provides
 the default value.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Parsed JSON response.</p>
+    
+
+<p>Parsed JSON response.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">xronos_request</span><span class="op">(</span><span class="st">"query_labnr=AAR-1847"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">xronos_request</span><span class="op">(</span><span class="st">"query_labnr=AAR-1847"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 19</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      id labnr    reference source_database    bp   std cal_bp cal_std delta_c13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">61</span>069 AAR-1847 <span style="color: #BB0000;">NA</span>        calpal           <span style="text-decoration: underline;">4</span>780   100   <span style="text-decoration: underline;">5</span>499     214     -<span style="color: #BB0000;">27.3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 10 more variables: site &lt;chr&gt;, site_phase &lt;chr&gt;, feature &lt;lgl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   period &lt;named list&gt;, typochronological_unit &lt;named list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ecochronological_unit &lt;named list&gt;, material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   country &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      id labnr   refer…¹ sourc…²    bp   std cal_bp cal_std delta…³ site  site_…⁴</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">61</span>069 AAR-18… <span style="color: #BB0000;">NA</span>      calpal   <span style="text-decoration: underline;">4</span>780   100   <span style="text-decoration: underline;">5</span>499     214   -<span style="color: #BB0000;">27.3</span> Øgår… Øgårde…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 8 more variables: feature &lt;lgl&gt;, periods &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   typochronological_units &lt;list&gt;, ecochronological_units &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;, country &lt;chr&gt;, and abbreviated</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​reference, ²​source_database, ³​delta_c13, ⁴​site_phase</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -99,7 +104,7 @@ the default value.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
