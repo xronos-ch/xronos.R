@@ -89,6 +89,19 @@ xronos_query <- function(filter, values) {
 xronos_parse <- function(response) {
   content <- httr::content(response, as = "text")
   result <- jsonlite::parse_json(content)
+
+  # Flatten nested attributes
+  result <- purrr::map_depth(result, 2,
+                             ~purrr::map_at(., c("measurement", "periods"),
+                                            ~list(unlist(., use.names = FALSE))))
+  result <- purrr::map_depth(result, 2,
+                             ~purrr::map_at(., c("measurement", "typochronological_units"),
+                                            ~list(unlist(., use.names = FALSE))))
+  result <- purrr::map_depth(result, 2,
+                             ~purrr::map_at(., c("measurement", "ecochronological_units"),
+                                            ~list(unlist(., use.names = FALSE))))
+
+  # Normalise & rectangle
   result <- purrr::map(result, normalise_empty)
   result <- purrr::map_dfr(result, "measurement")
 
