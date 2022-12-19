@@ -20,8 +20,8 @@
 #' @examples
 #' xronos_request("query_labnr=AAR-1847")
 xronos_request <- function(query = NA, api_url = xronos_api_url()) {
-  if (!is.na(query)) url <- paste0(xronos_api_url(), "?", query)
-  else url <- xronos_api_url()
+  if (!is.na(query)) url <- paste0(api_url, "?", query)
+  else url <- api_url
   url <- utils::URLencode(url)
 
   response <- httr::GET(url, xronos_user_agent())
