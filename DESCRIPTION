@@ -1,7 +1,7 @@
 Package: xronos
 Type: Package
 Title: Client for the 'XRONOS' Chronological Database
-Version: 0.1.1
+Version: 0.1.1.9000
 Authors@R: c(
         person(given = "Martin", family = "Hinz",
                role = "aut",
