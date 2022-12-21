@@ -77,16 +77,19 @@ For example, using rcarbon:
 ```{r calibrate, message=FALSE}
 library(rcarbon)
 
-chron_ch_cal <- calibrate(x = chron_ch$bp,
-                          errors = chron_ch$std,
-                          ids = chron_ch$labnr,
-                          verbose = FALSE)
+chron_moos <- chron_data(site = "Moos")
+chron_moos <- unique(chron_moos[c("labnr", "bp", "std")]) # Remove duplicates
+
+chron_moos_cal <- calibrate(x = chron_moos$bp,
+                            errors = chron_moos$std,
+                            ids = chron_moos$labnr,
+                            verbose = FALSE)
 ```
 
 The results are best understood using a plot:
 
 ```{r plot-cal}
-multiplot(chron_ch_cal[1:5])
+multiplot(chron_moos_cal)
 ```
 
 ## Map chronological data
