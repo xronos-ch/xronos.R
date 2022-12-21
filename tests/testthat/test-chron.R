@@ -21,3 +21,14 @@ test_that("chron_data() prompts for confirmation if `.everything` isn't set", {
   mockery::stub(chron_data, "utils::askYesNo", FALSE)
   expect_null(chron_data())
 })
+
+test_that("chron_data() can interpret country names", {
+  mockery::stub(xronos_query, "xronos_request", return, depth = 2)
+
+  expect_equal(chron_data(country = c("CH", "DE")),
+               chron_data(country = c("Switzerland", "Germany")))
+  expect_equal(chron_data(country = c("CH", "Germany")),
+               chron_data(country = c("Switzerland", "DE")))
+  expect_error(chron_data(country = c("CH", "DE", "Nonsuch Palace")),
+               class = "xronos_invalid_request")
+})
