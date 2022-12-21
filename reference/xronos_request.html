@@ -82,14 +82,17 @@ the default value.</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">xronos_request</span><span class="op">(</span><span class="st">"query_labnr=AAR-1847"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 19</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      id labnr   refer…¹ sourc…²    bp   std cal_bp cal_std delta…³ site  site_…⁴</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> <span style="text-decoration: underline;">61</span>069 AAR-18… <span style="color: #BB0000;">NA</span>      calpal   <span style="text-decoration: underline;">4</span>780   100   <span style="text-decoration: underline;">5</span>499     214   -<span style="color: #BB0000;">27.3</span> Øgår… Øgårde…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 8 more variables: feature &lt;lgl&gt;, periods &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   typochronological_units &lt;list&gt;, ecochronological_units &lt;list&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   material &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;, country &lt;chr&gt;, and abbreviated</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   variable names ¹​reference, ²​source_database, ³​delta_c13, ⁴​site_phase</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 21</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       id labnr      bp   std cal_bp cal_std delta…¹ reference    sourc…² mater…³</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>  <span style="text-decoration: underline;">21</span>924 AAR-18…  <span style="text-decoration: underline;">4</span>780   100 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        -<span style="color: #BB0000;">27.3</span> &lt;named list&gt; CalPal  food r…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>  <span style="text-decoration: underline;">85</span>745 AAR-18…  <span style="text-decoration: underline;">4</span>780   100 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>   &lt;named list&gt; EUROEV… food r…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span>  <span style="text-decoration: underline;">88</span>925 AAR-18…  <span style="text-decoration: underline;">4</span>780   100 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        -<span style="color: #BB0000;">27.3</span> &lt;named list&gt; RADON   food r…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> <span style="text-decoration: underline;">177</span>143 AAR-18…  <span style="text-decoration: underline;">4</span>780   100 <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>        -<span style="color: #BB0000;">27.3</span> &lt;named list&gt; p3k14c  charco…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 11 more variables: species &lt;chr&gt;, feature &lt;chr&gt;, periods &lt;list&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   typochronological_units &lt;list&gt;, ecochronological_units &lt;list&gt;, site &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   country &lt;chr&gt;, lat &lt;chr&gt;, lng &lt;chr&gt;, site_type &lt;chr&gt;, feature_type &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   and abbreviated variable names ¹​delta_c13, ²​source_database, ³​material</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -104,7 +107,7 @@ the default value.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
