@@ -2,8 +2,8 @@ test_that("chron_data(...) correctly translates parameters to xronos_query()", {
   # Just return the query, don't actually make it
   mockery::stub(xronos_query, "xronos_request", return, depth = 2)
 
-  x <- chron_data(country = "Switzerland", material = c("bone", "charcoal"))
-  y <- xronos_query(c("country", "material"), list("Switzerland", c("bone", "charcoal")))
+  x <- chron_data(country = "CH", material = c("bone", "charcoal"))
+  y <- xronos_query(c("country", "material"), list("CH", c("bone", "charcoal")))
   expect_equal(x, y)
 })
 
