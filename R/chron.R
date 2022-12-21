@@ -19,6 +19,12 @@
 #' prompt for confirmation in interactive mode interactive mode. Set
 #' `.everything = TRUE` to suppress this.
 #'
+#' `country` should be a valid
+#' [ISO two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-21).
+#' Otherwise, the function will try to interpret as such using
+#' [countrycode::countryname()], or return an error if any values of `country`
+#' cannot be matched.
+#'
 #' @export
 #'
 #' @examples
@@ -42,7 +48,41 @@ chron_data <- function(..., .everything = NA) {
     xronos_request()
   }
   else {
+    if ("country" %in% names(params)) {
+      unknown_countries <- !is_country_code(params[["country"]])
+      if (any(unknown_countries)) {
+        params[["country"]][unknown_countries] <- normalise_country_code(params[["country"]][unknown_countries])
+      }
+    }
     xronos_query(names(params), params)
   }
 }
 
+#' Normalise country codes
+#'
+#' Attempts to interpret a vector as ISO two-character country codes. Error if
+#' not all can be matched.
+#'
+#' @noRd
+#' @keywords internal
+normalise_country_code <- function(x) {
+  x <- countrycode::countryname(x, destination = "iso2c", warn = FALSE)
+  if (any(rlang::are_na(x))) {
+    rlang::abort(
+      c("`country` must be a valid ISO two-character country code, or something interpretable as one.",
+        i = "See ?countrycode::countryname for interpretable values."),
+      class = "xronos_invalid_request"
+    )
+  }
+  else {
+    return(x)
+  }
+}
+
+#' Checks if a vector is a valid ISO two-character country code
+#'
+#' @noRd
+#' @keywords internal
+is_country_code <- function(x) {
+  x %in% countrycode::codelist$iso2c
+}

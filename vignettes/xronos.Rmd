@@ -48,7 +48,7 @@ You can use the following parameters, passed as arguments to `chron_data()`, to 
 * `labnr`
 * `site`
 * `site_type`
-* `country`
+* `country` (ideally a two-letter country code, otherwise the function will attempt to interpret it as one using [countrycode::countryname()](https://vincentarelbundock.github.io/countrycode/reference/countryname.html))
 * `feature`
 * `material`
 * `species`
@@ -58,7 +58,7 @@ You can combine any number of parameters, and each parameter can take either a s
 For example, to get all radiocarbon dates from Switzerland on either charcoal or bone:
 
 ```{r get-swiss-data}
-chron_ch <- chron_data(country = "Switzerland", material = c("charcoal", "bone"))
+chron_ch <- chron_data(country = "CH", material = c("charcoal", "bone"))
 ```
 
 The results of the query are returned as a table of records (a `tibble` if tibble is installed, otherwise a data frame):
