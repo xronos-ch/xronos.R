@@ -1,4 +1,4 @@
-# xronos (development version)
+# xronos 0.1.1
 
 * Updated documentation to clarify that <https://xronos.ch> now uses ISO two-character codes for countries.
 * chron_data() now uses [countrycode](https://vincentarelbundock.github.io/countrycode/) to attempt to interpret `country` arguments that are not country codes.
