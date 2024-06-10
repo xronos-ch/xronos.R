@@ -90,13 +90,7 @@ xronos_parse <- function(response) {
   content <- httr::content(response, as = "text")
   result <- rjson::fromJSON(content)
 
-  print("Processing samples...")
-
-  # Initialize a lightweight progress bar
-  pb <- utils::txtProgressBar(min = 0, max = length(result), style = 3)
-
   measurements <- lapply(seq_along(result), function(i) {
-    utils::setTxtProgressBar(pb, i)
     process_measurement(result[[i]]$measurement)
   })
 
@@ -105,35 +99,7 @@ xronos_parse <- function(response) {
 
   result_df <- lapply(result_df, normalise_empty)
 
-  columns_are <- c(id = NA_integer_,
-                   labnr = NA_character_,
-                   bp = NA_integer_,
-                   std = NA_integer_,
-                   cal_bp = NA_integer_,
-                   cal_std = NA_integer_,
-                   delta_c13 = NA_real_,
-                   source_database = NA_character_,
-                   lab_name = NA_character_,
-                   material = NA_character_,
-                   species = NA_character_,
-                   feature = NA_character_,
-                   feature_type = NA_character_,
-                   site = NA_character_,
-                   country = NA_character_,
-                   lat = NA_character_,
-                   lng = NA_character_,
-                   site_type = NA_character_,
-                   periods = NA,
-                   typochronological_units = NA,
-                   ecochronological_units = NA,
-                   reference = NA
-  )
-
-  return(dplyr::as_tibble(result_df) |>
-           tibble::add_column(!!!columns_are[setdiff(names(columns_are),
-                                                     names(result_df))]) |>
-           dplyr::select(names(columns_are))
-  )
+  return(dplyr::as_tibble(result_df))
 }
 
 

@@ -1,7 +1,7 @@
 Package: xronos
 Type: Package
 Title: Client for the 'XRONOS' Chronological Database
-Version: 0.1.1.9000
+Version: 0.1.1.9001
 Authors@R: c(
         person(given = "Martin", family = "Hinz",
                role = "aut",
@@ -36,8 +36,7 @@ Imports:
     utils,
     cli,
     dplyr,
-    countrycode,
-    tibble
+    countrycode
 Suggests: 
     testthat (>= 3.0.0),
     covr,
