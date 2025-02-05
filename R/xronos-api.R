@@ -88,28 +88,70 @@ xronos_query <- function(filter, values) {
 #' @noRd
 xronos_parse <- function(response) {
   content <- httr::content(response, as = "text")
-  result <- jsonlite::parse_json(content)
+  result <- rjson::fromJSON(content)
 
-  # Flatten nested attributes
-  result <- purrr::map_depth(result, 2,
-                             ~purrr::map_at(., c("measurement", "periods"),
-                                            ~list(unlist(., use.names = FALSE))))
-  result <- purrr::map_depth(result, 2,
-                             ~purrr::map_at(., c("measurement", "typochronological_units"),
-                                            ~list(unlist(., use.names = FALSE))))
-  result <- purrr::map_depth(result, 2,
-                             ~purrr::map_at(., c("measurement", "ecochronological_units"),
-                                            ~list(unlist(., use.names = FALSE))))
+  measurements <- lapply(seq_along(result), function(i) {
+    process_measurement(result[[i]]$measurement)
+  })
 
-  # Normalise & rectangle
-  result <- purrr::map(result, normalise_empty)
-  result <- purrr::map_dfr(result, "measurement")
+  # Combine list of named lists into a data frame and then convert to tibble
+  result_df <- dplyr::bind_rows(measurements)
 
-  result
+  result_df <- lapply(result_df, normalise_empty)
+
+  return(dplyr::as_tibble(result_df))
 }
 
 
 # Helpers -----------------------------------------------------------------
+
+#' XRONOS web address
+#'
+#' Helper function to process each measurement
+#'
+#' @param measurement An individual measurement from the response as JSON
+#'
+#' @return
+#' A row of parsed JSON for an individual measurement.
+#' @keywords internal
+#' @noRd
+process_measurement <- function(measurement) {
+
+  periods <- unlist(
+    lapply(
+      measurement$periods,
+      function(x) x$periode
+      ),
+    use.names = FALSE)
+
+  typochronological_units <- unlist(
+    lapply(
+      measurement$typochronological_units,
+      function(x) x$typochronological_unit
+      ),
+    use.names = FALSE
+    )
+
+  ecochronological_units <- unlist(
+    lapply(
+      measurement$ecochronological_units,
+      function(x) x$ecochronological_unit
+      ),
+    use.names = FALSE
+    )
+
+  reference <- lapply(
+    measurement$reference,
+    function(x) list(reference = x$reference)
+    )
+
+  measurement$periods <- list(periods)
+  measurement$typochronological_units <- list(typochronological_units)
+  measurement$ecochronological_units <- list(ecochronological_units)
+  measurement$reference <- reference
+
+  return(measurement)
+}
 
 #' XRONOS web address
 #'
@@ -175,9 +217,10 @@ xronos_assert_valid_filter <- function(x) {
 #' @noRd
 normalise_empty <- function(x) {
   if (is.list(x)) {
-    if (length(x) == 0) NA
-    else purrr::map(x, normalise_empty)
+    lapply(x, normalise_empty)
+  } else if (is.null(x)) {
+    NA
+  } else {
+    x
   }
-  else if (is.null(x)) NA
-  else x
 }
