@@ -1,5 +1,7 @@
 # xronos (development version)
 
+* Significantly improved performance of `chron_data()`
+
 # xronos 0.1.1
 
 * Updated documentation to clarify that <https://xronos.ch> now uses ISO two-character codes for countries.
