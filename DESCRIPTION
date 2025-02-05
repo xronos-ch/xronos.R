@@ -1,7 +1,7 @@
 Package: xronos
 Type: Package
 Title: Client for the 'XRONOS' Chronological Database
-Version: 0.1.1.9001
+Version: 0.1.1.9000
 Authors@R: c(
         person(given = "Martin", family = "Hinz",
                role = "aut",
@@ -27,7 +27,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     rjson,
     httr,
