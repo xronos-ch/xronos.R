@@ -34,4 +34,4 @@ Use `chron_data()` to get chronological data, using any of the search parameters
 chron_data(country = "Switzerland", material = c("charcoal", "bone"))
 ```
 
-For further usage, see the [introductory vignette](https://xronos-ch.github.io/xronos.R/articles/xronos.html) (`vignette("xronos")`).
+For further usage, see the [introductory vignette](https://r.xronos.ch/articles/xronos.html) (`vignette("xronos")`).

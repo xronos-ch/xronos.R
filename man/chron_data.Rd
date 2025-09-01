@@ -24,7 +24,7 @@ prompt for confirmation in interactive mode interactive mode. Set
 \code{.everything = TRUE} to suppress this.
 
 \code{country} should be a valid
-\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-21}{ISO two-letter country code}.
+\href{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2}{ISO two-letter country code}.
 Otherwise, the function will try to interpret as such using
 \code{\link[countrycode:countryname]{countrycode::countryname()}}, or return an error if any values of \code{country}
 cannot be matched.

@@ -20,7 +20,7 @@
 #' `.everything = TRUE` to suppress this.
 #'
 #' `country` should be a valid
-#' [ISO two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-21).
+#' [ISO two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2).
 #' Otherwise, the function will try to interpret as such using
 #' [countrycode::countryname()], or return an error if any values of `country`
 #' cannot be matched.
