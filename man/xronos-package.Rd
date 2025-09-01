@@ -6,7 +6,7 @@
 \alias{xronos-package}
 \title{xronos: Client for the 'XRONOS' Chronological Database}
 \description{
-A programmatic interface to 'XRONOS' \url{https://xronos.ch}, a worldwide database of chronological information from archaeological contexts, including radiocarbon and dendrochronological data.
+A programmatic interface to 'XRONOS' \url{https://xronos.ch}, an open data infrastructure for the backbone of the archaeological chronology, including radiocarbon and dendrochronological dates.
 }
 \seealso{
 Useful links:
