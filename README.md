@@ -13,19 +13,18 @@ An R client to [XRONOS](https://xronos.ch), a worldwide database of chronologica
 
 ## Installation
 
-You can install the development version of xronos using the [remotes](https://remotes.r-lib.org/) package:
 
-``` r
-remotes::install_github("xronos-ch/xronos.R")
-```
-
-<!--
-You can install the released version of xronos from [CRAN](https://CRAN.R-project.org) with:
+You can install the xronos R package from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("xronos")
 ```
--->
+
+You can also install the development version of xronos using the [remotes](https://remotes.r-lib.org/) package:
+
+``` r
+remotes::install_github("xronos-ch/xronos.R")
+```
 
 ## Usage
 
