@@ -14,6 +14,9 @@ and values to include. Supported filters are \code{"labnr"}, \code{"site"},
 \item{.everything}{If \code{TRUE}, suppresses interactive mode prompt when
 retrieving all records from XRONOS (see details).}
 }
+\value{
+A data frame with the returned data from XRONOS.
+}
 \description{
 Retrieves chronological data from XRONOS. \code{chron_data()} retrieves all
 records. Additional parameters can be used to filter the results.

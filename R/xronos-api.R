@@ -113,6 +113,7 @@ xronos_parse <- function(response) {
 #'
 #' @return
 #' A row of parsed JSON for an individual measurement.
+#'
 #' @keywords internal
 #' @noRd
 process_measurement <- function(measurement) {

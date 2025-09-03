@@ -25,6 +25,9 @@
 #' [countrycode::countryname()], or return an error if any values of `country`
 #' cannot be matched.
 #'
+#' @return
+#' A data frame with the returned data from XRONOS.
+#'
 #' @export
 #'
 #' @examples
