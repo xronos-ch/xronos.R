@@ -1,6 +1,8 @@
 template:
   params:
     bootswatch: yeti
+  includes:
+    in_header: '<script defer src="https://analytics.xronos.ch/script.js" data-website-id="4fb81bdb-153c-4454-86aa-ccae3d67497b"></script>'
 
 home:
   title: "R client for XRONOS"
